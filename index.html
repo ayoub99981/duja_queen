@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد ميلاد خديجة 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+        body {
+            font-family: 'Chewy', cursive;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 20px 0 10px 0;
+            text-shadow: 2px 2px 8px #000;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 6px #000;
+        }
+
+        #countdown {
+            font-size: 2em;
+            background: rgba(0,0,0,0.3);
+            padding: 25px 50px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .time-segment {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        .number {
+            font-weight: bold;
+            font-size: 2.5em;
+            display: block;
+        }
+
+        .label {
+            font-size: 0.9em;
+        }
+
+        #poem {
+            font-size: 1.5em;
+            max-width: 800px;
+            margin: 0 20px;
+            background: rgba(0,0,0,0.2);
+            padding: 20px 30px;
+            border-radius: 15px;
+            text-shadow: 1px 1px 4px #000;
+        }
+
+        /* تأثير البالونات */
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 60px;
+            height: 80px;
+            background-color: red;
+            border-radius: 50% 50% 50% 50%;
+            opacity: 0.8;
+            animation: floatUp 12s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {transform: translateY(0) rotate(0deg);}
+            50% {transform: translateY(-600px) rotate(180deg);}
+            100% {transform: translateY(-1200px) rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎉 Save the Date Mommy! 🎉</h1>
+    <h2>متحمس ليوم عيد ميلاد لالا مولاتي خديجة 🥳</h2>
+
+    <div id="countdown">
+        <div class="time-segment">
+            <span class="number" id="days">0</span>
+            <span class="label">أيام</span>
+        </div>
+        <div class="time-segment">
+            <span class="number" id="hours">0</span>
+            <span class="label">ساعات</span>
+        </div>
+        <div class="time-segment">
+            <span class="number" id="minutes">0</span>
+            <span class="label">دقائق</span>
+        </div>
+        <div class="time-segment">
+            <span class="number" id="seconds">0</span>
+            <span class="label">ثواني</span>
+        </div>
+    </div>
+
+    <div id="poem">
+        <br>
+        يوم ميلادك يوم عظيم، يوم سأخلده للتاريخ<br>
+        سأجعله غير منسي وهذا وعد ملكتي خديجة<br>
+        أحبك ❤️
+    </div>
+
+    <script>
+        // العد التنازلي
+        const targetDate = new Date("January 21, 2026 00:00:00").getTime();
+
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "🎉 اليوم هو عيد ميلاد خديجة! 🎉";
+            }
+        }, 1000);
+
+        // إضافة بالونات
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+            balloon.style.left = `${Math.random()*100}%`;
+            balloon.style.animationDuration = `${10 + Math.random()*5}s`;
+            document.body.appendChild(balloon);
+
+            setTimeout(() => {
+                balloon.remove();
+            }, 15000);
+        }
+
+        setInterval(createBalloon, 500);
+    </script>
+</body>
+</html>
